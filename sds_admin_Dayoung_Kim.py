@@ -20,6 +20,17 @@ def calculate_age(birth_date, current_date=None):
     
     return age
 
+def print_student_details(student, format_str):
+    format_str = "{: <5} {: <15} {: <15} {: <14} {: <6} {: <20}"   
+    
+    id = student[0]
+    fname = student[1]
+    famname = student[2]
+    birthdate = student[3].strftime("%d %b %Y")
+    grade = student[4]
+    email = student[5]
+    display_formatted_row([id,fname,famname,birthdate, grade, email],format_str)    
+
 def list_all_students():
     format_str = "{: <5} {: <15} {: <15} {: <14} {: <6} {: <20}"   
 
@@ -27,14 +38,7 @@ def list_all_students():
     print("-" * 85)    
 
     for student in students:
-        id = student[0]
-        fname = student[1]
-        famname = student[2]
-        birthdate = student[3].strftime("%d %b %Y")
-        grade = student[4]
-        email = student[5]
-
-        display_formatted_row([id,fname,famname,birthdate, grade, email],format_str)    
+        print_student_details(student, format_str)
 
 def list_students_and_classes():
     format_str = "{: <5} {: <15} {: <15} {: <14} {: <6} {: <20}"   
@@ -58,12 +62,7 @@ def list_students_and_classes():
             for student in sorted_students: 
                 # Find student details by matching id
                 if student[0] == student_id:
-                    fname = student[1]
-                    famname = student[2]
-                    birthdate = student[3].strftime("%d %b %Y")
-                    grade = student[4]
-                    email = student[5]
-                    display_formatted_row([student_id,fname,famname,birthdate, grade, email],format_str)
+                    print_student_details(student, format_str)
 
 def add_student_to_classes(student_id, grade, birthdate):
       age = calculate_age(birthdate)
