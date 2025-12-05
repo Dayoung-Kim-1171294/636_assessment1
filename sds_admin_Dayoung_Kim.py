@@ -20,6 +20,7 @@ def calculate_age(birth_date, current_date=None):
     
     return age
 
+# Helper function to print student details
 def print_student_details(student, format_str):
     id = student[0]
     fname = student[1]
@@ -39,6 +40,7 @@ def list_all_students():
     for student in students:
         print_student_details(student, format_str)
 
+# Function to list students by class
 def list_students_and_classes():
     format_str = "{: <5} {: <15} {: <15} {: <14} {: <6} {: <20}"   
 
