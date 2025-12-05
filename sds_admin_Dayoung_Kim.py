@@ -20,15 +20,11 @@ def calculate_age(birth_date, current_date=None):
     
     return age
 
-def list_all_students(classname=None):
+def list_all_students():
     format_str = "{: <5} {: <15} {: <15} {: <14} {: <6} {: <20}"   
-    column_items = ["ID","First Name","Family Name","Birth Date","Grade","e-Mail"]
 
-    if(classname is not None):
-        column_items.append("Class")
-
-    display_formatted_row(column_items,format_str)      
-    print("-" * 85)  
+    display_formatted_row(["ID","First Name","Family Name","Birth Date","Grade","e-Mail"],format_str)      
+    print("-" * 85)    
 
     for student in students:
         id = student[0]
@@ -38,10 +34,36 @@ def list_all_students(classname=None):
         grade = student[4]
         email = student[5]
 
-        display_formatted_row(column_items,format_str)    
+        display_formatted_row([id,fname,famname,birthdate, grade, email],format_str)    
 
 def list_students_and_classes():
-    pass
+    format_str = "{: <5} {: <15} {: <15} {: <14} {: <6} {: <20}"   
+
+    for class_name in classes:
+        print("")
+        print(f"◉ Class: {class_name} ▶︎ {len(classes[class_name])} student(s)")
+
+        # Handle case where no students are enrolled
+        if len(classes[class_name]) == 0:
+            continue
+
+        display_formatted_row(["ID","First Name","Family Name","Birth Date","Grade","e-Mail"],format_str)      
+        print("-" * 85)  
+
+        # Sort by family name
+        sorted_students = sorted(students, key=lambda x: x[2])
+        
+        # Loop through student IDs in the class
+        for student_id in classes[class_name]:
+            for student in sorted_students: 
+                # Find student details by matching id
+                if student[0] == student_id:
+                    fname = student[1]
+                    famname = student[2]
+                    birthdate = student[3].strftime("%d %b %Y")
+                    grade = student[4]
+                    email = student[5]
+                    display_formatted_row([student_id,fname,famname,birthdate, grade, email],format_str)
 
 def add_student_to_classes(student_id, grade, birthdate):
       age = calculate_age(birthdate)
@@ -106,6 +128,7 @@ while response.upper() != "X":
     disp_menu()
     # Display menu for the first time, and ask for response
     response = input("Please enter menu choice: ")    
+    print("")   # Print a blank line for spacing
     if response == "1":
         list_all_students()
     elif response == "2":

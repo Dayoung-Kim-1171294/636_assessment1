@@ -1,5 +1,5 @@
 # ============== SELWYN EVENT TICKETING SYSTEM ==============
-# Student Name: Daoyung Kim
+# Student Name: Dayoung Kim
 # Student ID : 1171294
 # =============================================================
 
