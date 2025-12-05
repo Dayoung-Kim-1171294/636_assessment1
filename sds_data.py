@@ -12,7 +12,15 @@
 from datetime import date,datetime,timedelta
 
 
-classes = { "Glowworms": [816,786], "Fireflies": [121], "Butterflies": [343, 810], "Piwakawaka": [], "Robins": [801]}
+classes = { 
+    "Glowworms": [816,786],
+    "Fireflies": [121], 
+    "Butterflies": [343, 810], 
+    "Piwakawaka": [], 
+    "Robins": [801],
+    "Bellbirds" : [],
+    "Senior Dance" : []
+}
 
 
 

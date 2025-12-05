@@ -64,37 +64,92 @@ def list_students_and_classes():
                     print_student_details(student, format_str)
 
 def add_student_to_classes(student_id, grade, birthdate):
-      age = calculate_age(birthdate)
-      if grade == 4:
+    age = calculate_age(birthdate)
+
+    if grade >= 6:
+        classes["Senior Dance"].append(student_id)
+    elif grade == 5:
+        classes["Bellbirds"].append(student_id)
+    elif grade == 4:
+        classes["Robins"].append(student_id)
+    elif grade == 3:
+        classes["Piwakawaka"].append(student_id)
+    elif grade == 2:
+        classes["Butterflies"].append(student_id)
+    elif grade == 1:
+        classes["Fireflies"].append(student_id)
+    else:
+        if age >= 12:
+            classes["Bellbirds"].append(student_id)
+        elif age >= 10:
             classes["Robins"].append(student_id)
-      elif grade == 3:
-                  classes["Piwakawaka"].append(student_id)
-      elif grade == 2:
-                  classes["Butterflies"].append(student_id)
-      elif grade == 1:
-                  classes["Fireflies"].append(student_id)
-      else:
-            if age <= 10:
-                    classes["Robins"].append(student_id)
-            elif age <= 8.5:
-                    classes["Piwakawaka"].append(student_id)
-            elif age <= 7:
-                    classes["Butterflies"].append(student_id)
-            elif age <= 6:
-                    classes["Fireflies"].append(student_id)
-            else:
-                    classes["Glowworms"].append(student_id)
+        elif age >= 8.5:
+            classes["Piwakawaka"].append(student_id)
+        elif age >= 7:
+            classes["Butterflies"].append(student_id)
+        elif age >= 6:
+            classes["Fireflies"].append(student_id)
+        else:
+            classes["Glowworms"].append(student_id)
             
+# Helper function to validate a date
+def get_valid_birthdate(year, month, day):
+    try:
+        year = int(year)
+        month = int(month)
+        day = int(day)
+        birthdate = date(year, month, day)
+
+        if birthdate > date.today():
+            print(f"Invalid date: {birthdate} is in the future. Please try again.")
+            return get_valid_birthdate(
+                input("Enter Birth Year (YYYY): "),
+                input("Enter Birth Month (1-12): "),
+                input("Enter Birth Day (1-31): ")
+            )
+        else:            
+            return birthdate
+    except ValueError:
+        print("Invalid date. Please enter a valid date.")
+        return get_valid_birthdate(
+            input("Enter Birth Year (YYYY): "),
+            input("Enter Birth Month (1-12): "),
+            input("Enter Birth Day (1-31): ")
+        )
+
+# Helper function to validate integer input
+def get_valid_grade(prompt):
+    while True:
+        try:
+            value = int(input(prompt))
+            if value < 0:
+                print("Cannot be negative. Please enter a valid number.")
+            else:
+                return value
+        except ValueError:
+            # Handle non-integer input
+            print("Invalid input. Please enter a number.")
+
+# Helper function to validate email input
+def get_valid_email(prompt):
+    while True:
+        email = input(prompt)
+        if "@" in email and "." in email:
+            return email
+        else:
+            print("Invalid email format. Please enter a valid email address.")
+
 def add_new_student():
     fname = input("Enter First Name: ")
     famname = input("Enter Family Name: ")
-    birthyear = int(input("Enter Birth Year (YYYY): "))
-    birthmonth = int(input("Enter Birth Month (1-12): "))
-    birthday = int(input("Enter Birth Day (1-31): "))
-    email = input("Enter e-Mail Address: ")
-    grade = int(input("Enter Grade (0-4): "))
-    birthdate = date(birthyear, birthmonth, birthday)
+    birthyear = input("Enter Birth Year (YYYY): ")
+    birthmonth = input("Enter Birth Month (1-12): ")
+    birthday = input("Enter Birth Day (1-31): ")
+    birthdate = get_valid_birthdate(birthyear, birthmonth, birthday)
+    email = get_valid_email("Enter e-Mail Address: ")
+    grade = get_valid_grade("Enter Grade (0-6+): ")
     new_id = unique_id()
+
     students.append([new_id, fname, famname, birthdate, grade, email])
     add_student_to_classes(new_id, grade, birthdate)
     print(f"Student {fname} {famname} added with ID {new_id}.")
