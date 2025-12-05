@@ -21,14 +21,13 @@ def calculate_age(birth_date, current_date=None):
     return age
 
 def print_student_details(student, format_str):
-    format_str = "{: <5} {: <15} {: <15} {: <14} {: <6} {: <20}"   
-    
     id = student[0]
     fname = student[1]
     famname = student[2]
     birthdate = student[3].strftime("%d %b %Y")
     grade = student[4]
     email = student[5]
+
     display_formatted_row([id,fname,famname,birthdate, grade, email],format_str)    
 
 def list_all_students():
@@ -101,7 +100,18 @@ def add_new_student():
     print(f"Student {fname} {famname} added with ID {new_id}.")
 
 def list_students_and_ages():
-      pass
+    format_str = "{: <5} {: <15} {: <15} {: <14}"   
+
+    display_formatted_row(["ID","First Name","Family Name", "Age"],format_str)      
+    print("-" * 44)    
+
+    for student in students:
+        id = student[0]
+        fname = student[1]
+        famname = student[2]
+        age = calculate_age(student[3])
+
+        display_formatted_row([id,fname,famname,age],format_str)   
 
 def disp_menu():
     """
