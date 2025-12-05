@@ -157,6 +157,7 @@ def add_new_student():
 def list_students_and_ages():
     format_str = "{: <5} {: <15} {: <15} {: <14}"   
 
+    print("❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ Dancers Ages ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖".center(44))
     display_formatted_row(["ID","First Name","Family Name", "Age"],format_str)      
     print("-" * 44)    
 
