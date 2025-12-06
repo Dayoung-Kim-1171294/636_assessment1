@@ -20,7 +20,6 @@ def calculate_age(birth_date, current_date=None):
     
     return age
 
-# Helper function to print student details
 def print_student_details(student, format_str):
     id = student[0]
     fname = student[1]
@@ -81,6 +80,8 @@ def add_student_to_classes(student_id, grade, birthdate):
     elif grade == 1:
         classes["Fireflies"].append(student_id)
     else:
+        # Grade 0, assign based on age
+        # Fix the problems identified by the School staff
         if age >= 12:
             classes["Bellbirds"].append(student_id)
         elif age >= 10:
@@ -102,8 +103,10 @@ def get_valid_birthdate(year, month, day):
         day = int(day)
         birthdate = date(year, month, day)
 
+        # Check if the date is in the future
         if birthdate > date.today():
             print(f"Invalid date: {birthdate} is in the future. Please try again.")
+            # Prompt user again
             return get_valid_birthdate(
                 input("Enter Birth Year (YYYY): "),
                 input("Enter Birth Month (1-12): "),
@@ -113,6 +116,7 @@ def get_valid_birthdate(year, month, day):
             return birthdate
     except ValueError:
         print("Invalid date. Please enter a valid date.")
+        # Prompt user again
         return get_valid_birthdate(
             input("Enter Birth Year (YYYY): "),
             input("Enter Birth Month (1-12): "),
@@ -124,6 +128,7 @@ def get_valid_grade(prompt):
     while True:
         try:
             value = int(input(prompt))
+            # Check for negative grades
             if value < 0:
                 print("Cannot be negative. Please enter a valid number.")
             else:
@@ -159,6 +164,7 @@ def add_new_student():
 def list_students_and_ages():
     format_str = "{: <5} {: <15} {: <15} {: <14}"   
 
+    # A new report “Dancers Ages” added
     print("❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ Dancers Ages ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖".center(44))
     display_formatted_row(["ID","First Name","Family Name", "Age"],format_str)      
     print("-" * 44)    
@@ -167,6 +173,7 @@ def list_students_and_ages():
         id = student[0]
         fname = student[1]
         famname = student[2]
+        # student birthdate is in student[3]
         age = calculate_age(student[3])
 
         display_formatted_row([id,fname,famname,age],format_str)   
