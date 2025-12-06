@@ -130,7 +130,7 @@ def get_valid_grade(prompt):
                 return value
         except ValueError:
             # Handle non-integer input
-            print("Invalid input. Please enter a number.")
+            print("Invalid grade. Please enter a number.")
 
 # Helper function to validate email input
 def get_valid_email(prompt):
