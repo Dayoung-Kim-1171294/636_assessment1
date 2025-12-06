@@ -109,7 +109,7 @@ def get_valid_birthdate(year, month, day):
 
         # Check if the date is in the future
         if birthdate > date.today():
-            print(f"Invalid date: {birthdate} is in the future. Please try again.")
+            print(f"⚠️  Invalid date: {birthdate} is in the future. Please try again.")
             # Prompt user again
             return get_valid_birthdate(
                 input("Enter Birth Year (YYYY): "),
@@ -119,7 +119,7 @@ def get_valid_birthdate(year, month, day):
         else:            
             return birthdate
     except ValueError:
-        print("Invalid date. Please enter a valid date.")
+        print("⚠️  Invalid date. Please enter a valid date.")
         # Prompt user again
         return get_valid_birthdate(
             input("Enter Birth Year (YYYY): "),
@@ -134,12 +134,12 @@ def get_valid_grade(prompt):
             value = int(input(prompt))
             # Check for negative grades
             if value < 0:
-                print("Cannot be negative. Please enter a valid number.")
+                print("⚠️  Cannot be negative. Please enter a valid number.")
             else:
                 return value
         except ValueError:
             # Handle non-integer input
-            print("Invalid grade. Please enter a number.")
+            print("⚠️  Invalid grade. Please enter a number.")
 
 # Helper function to validate email input
 def get_valid_email(prompt):
@@ -148,7 +148,7 @@ def get_valid_email(prompt):
         if "@" in email and "." in email:
             return email
         else:
-            print("Invalid email format. Please enter a valid email address.")
+            print("⚠️  Invalid email format. Please enter a valid email address.")
 
 def add_new_student():
     fname = input("Enter First Name: ")
@@ -183,6 +183,26 @@ def list_students_and_ages():
 
         display_formatted_row([id,fname,famname,age],format_str)   
 
+def get_student_by_family_name():
+    format_str = "{: <5} {: <15} {: <15} {: <14} {: <6} {: <20}"
+    # get family name to search for. Case insensitive search
+    search_name = input("Enter Family Name to search: ").strip().lower()
+    # Find all matching students. Put into a list.
+    matches = [student for student in students if student[2].strip().lower() == search_name]
+
+    if not matches:
+        print(f"⚠️  No students found with family name '{search_name}'.")
+        return
+
+    print("")
+    print(f"❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ Students with Family Name: {search_name} ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖".center(74))
+    print("")
+    display_formatted_row(["ID","First Name","Family Name","Birth Date","Grade","e-Mail"], format_str)
+    print("-" * 85)
+
+    for student in matches:
+        print_student_details(student, format_str)
+
 def disp_menu():
     """
     Displays the menu and current date.  No parameters required.
@@ -191,7 +211,7 @@ def disp_menu():
     print(" 1 - List Students")
     print(" 2 - List Students and their Classes")
     print(" 3 - List Students and their Ages")
-    print(" 4 - Not Implemented")
+    print(" 4 - Find Student")
     print(" 5 - Not Implemented")
     print(" 6 - Add New Student")
     print(" X - eXit (stops the program)")
@@ -215,7 +235,7 @@ while response.upper() != "X":
     elif response == "3":
         list_students_and_ages()
     elif response == "4":
-        pass
+        get_student_by_family_name()
     elif response == "5":
         pass
     elif response == "6":

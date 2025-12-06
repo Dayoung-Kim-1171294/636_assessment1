@@ -13,13 +13,13 @@ The following table outlines the test data used to verify the class allocation l
 | **Class Allocation (Butterflies)** | **Grade:** `0`<br>**Year:** `2017` | Student assigned to **Butterflies** (Age: 7 or 8). |
 | **Class Allocation (Fireflies)** | **Grade:** `1` | Student assigned to **Fireflies**. |
 | **Class Allocation (Glowworms)** | **Grade:** `0`<br>**Year:** `2020` | Student assigned to **Glowworms**. (Age: 4 or 5)|
-| **Input Validation (Non-numeric)** | **Grade:** `abc` | Error message ("Invalid grade. Please enter a number.") displayed, prompts user again. |
-| **Input Validation (Negative)** | **Grade:** `-1` | Error message ("Cannot be negative. Please enter a valid number.") displayed, prompts user again. |
-| **Date Validation (Invalid Date)** | **Month:** `2`, **Day:** `30` | Error message ("Invalid date. Please enter a valid date.") displayed, prompts user again. |
-| **Date Validation (Future Date)** | **Year:** `2099` | Error message ("Invalid date: {input date} is in the future. Please try again.") displayed, prompts user again. |
-| **Date Validation (Text Input)** | **Year:** `two thousand` | Error message ("Invalid date. Please enter a valid date.") displayed, prompts user again. |
-| **Email Validation (Missing @)** | **Email:** `dayoung.com` | Error message ("Invalid email format. Please enter a valid email address.") displayed, prompts user again. |
-| **Email Validation (Missing .)** | **Email:** `dayoung@gmail` | Error message ("Invalid email format. Please enter a valid email address.") displayed, prompts user again. |
+| **Input Validation (Non-numeric)** | **Grade:** `abc` | Error message ("⚠️  Invalid grade. Please enter a number.") displayed, prompts user again. |
+| **Input Validation (Negative)** | **Grade:** `-1` | Error message ("⚠️  Cannot be negative. Please enter a valid number.") displayed, prompts user again. |
+| **Date Validation (Invalid Date)** | **Month:** `2`, **Day:** `30` | Error message ("⚠️  Invalid date. Please enter a valid date.") displayed, prompts user again. |
+| **Date Validation (Future Date)** | **Year:** `2099` | Error message ("⚠️  Invalid date: {input date} is in the future. Please try again.") displayed, prompts user again. |
+| **Date Validation (Text Input)** | **Year:** `two thousand` | Error message ("⚠️  Invalid date. Please enter a valid date.") displayed, prompts user again. |
+| **Email Validation (Missing @)** | **Email:** `dayoung.com` | Error message ("⚠️  Invalid email format. Please enter a valid email address.") displayed, prompts user again. |
+| **Email Validation (Missing .)** | **Email:** `dayoung@gmail` | Error message ("⚠️  Invalid email format. Please enter a valid email address.") displayed, prompts user again. |
 
 
 ## 💭 Reflection
