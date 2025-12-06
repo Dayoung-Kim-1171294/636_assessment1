@@ -32,7 +32,6 @@ students = [
 	[786, 'Jack', 'Hopere', date(2022,2,10),0, 'Jack643@gmail.com'],
 	[801, 'Chloe', 'Mathewson', date(2015,3,15),4, 'Chloe572@gmail.com'],
 	[121, 'Kate', 'McLeod', date(2019,7,15),1, 'KMcLeod112@gmail.com'],
-
 ]
 
 
