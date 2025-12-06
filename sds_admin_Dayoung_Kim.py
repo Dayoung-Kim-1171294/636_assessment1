@@ -205,13 +205,13 @@ def get_student_by_family_name():
 
 # Remove a student by ID and update class enrolments
 def remove_student():
-    try:
-        # Get student ID to remove
-        student_id = int(input("Enter the Student ID to remove: ").strip())
-    except ValueError:
-        print("⚠️  Invalid ID. Please enter a number.")
-        remove_student()
-
+    while True:
+        try:
+            # Get student ID to remove
+            student_id = int(input("Enter the Student ID to remove: ").strip())
+            break
+        except ValueError:
+            print("⚠️  Invalid ID. Please enter a number.")
     # initialize 'student_to_remove' variable to None
     # Why not initialize to []? -> searching for a single student, not a list of students.
     student_to_remove = None
