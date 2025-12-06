@@ -1,25 +1,45 @@
 # COMP 636: Python Assessment
+**Student Name:** Dayoung Kim  
+**Student ID:** 1171294
+
+## ✨ New Features Implemented
+* **New Classes:** Logic updated to support 'Bellbirds' (Grade 5 or Age 12+) and 'Senior Dance' (Grade 6+ only).
+* **New Reports:** 
+    * `List Students and their Classes`: Displays students grouped by class, sorted by family name.
+    * `List Students and their Ages`: Displays the age of each student.
+* **Menu 4 (Find Student):** Allows case-insensitive search for students by their family name.
+* **Menu 5 (Remove Student):** Allows removal of a student by ID, requiring confirmation and updating class lists.
+* **Data Validation:** Implemented for grades, dates, and email formats to prevent program crashes and ensure user-friendliness.
+
 
 ## 🧪 Test Data Strategy
-The following table outlines the test data used to verify the class allocation logic and the new validation features. All student entry tests begin by selecting the **"Add New Student"** option (menu 6). 
+The following table outlines the test data used to verify the class allocation logic and the new features/validation checks.
 
-| Feature Tested | Input Data Entered | Expected Result |
-| :--- | :--- | :--- |
-| **Class Allocation (Bellbirds)** | **Grade:** `5`<br>**(Other fields valid)** | Student assigned to **Bellbirds**. |
-| **Class Allocation (Bellbirds)** | **Grade:** `0`<br>**Year:** `2012` | Student assigned to **Bellbirds**. (Age: 12 or 13) |
-| **Class Allocation (Senior Dance)** | **Grade:** `6` | Student assigned to **Senior Dance**. |
-| **Class Allocation (Robins)** | **Grade:** `0`<br>**Year:** `2014` | Student assigned to **Robins** (Age: 10 or 11). |
-| **Class Allocation (Piwakawaka)** | **Grade:** `3` | Student assigned to **Piwakawaka**. |
-| **Class Allocation (Butterflies)** | **Grade:** `0`<br>**Year:** `2017` | Student assigned to **Butterflies** (Age: 7 or 8). |
-| **Class Allocation (Fireflies)** | **Grade:** `1` | Student assigned to **Fireflies**. |
-| **Class Allocation (Glowworms)** | **Grade:** `0`<br>**Year:** `2020` | Student assigned to **Glowworms**. (Age: 4 or 5)|
-| **Input Validation (Non-numeric)** | **Grade:** `abc` | Error message ("⚠️  Invalid grade. Please enter a number.") displayed, prompts user again. |
-| **Input Validation (Negative)** | **Grade:** `-1` | Error message ("⚠️  Cannot be negative. Please enter a valid number.") displayed, prompts user again. |
-| **Date Validation (Invalid Date)** | **Month:** `2`, **Day:** `30` | Error message ("⚠️  Invalid date. Please enter a valid date.") displayed, prompts user again. |
-| **Date Validation (Future Date)** | **Year:** `2099` | Error message ("⚠️  Invalid date: {input date} is in the future. Please try again.") displayed, prompts user again. |
-| **Date Validation (Text Input)** | **Year:** `two thousand` | Error message ("⚠️  Invalid date. Please enter a valid date.") displayed, prompts user again. |
-| **Email Validation (Missing @)** | **Email:** `dayoung.com` | Error message ("⚠️  Invalid email format. Please enter a valid email address.") displayed, prompts user again. |
-| **Email Validation (Missing .)** | **Email:** `dayoung@gmail` | Error message ("⚠️  Invalid email format. Please enter a valid email address.") displayed, prompts user again. |
+| Feature Tested | Menu | Input Data Entered | Expected Result |
+| :--- | :--- | :--- | :--- |
+| **Class Allocation (Bellbirds)** |`6`| **Grade:** `5`<br>**(Other fields valid)** | Student assigned to **Bellbirds**. |
+| **Class Allocation (Bellbirds)** |`6`| **Grade:** `0`<br>**Year:** `2012` | Student assigned to **Bellbirds**. (Age: 12 or 13) |
+| **Class Allocation (Senior Dance)** |`6`| **Grade:** `6` | Student assigned to **Senior Dance**. |
+| **Class Allocation (Robins)** |`6`| **Grade:** `0`<br>**Year:** `2014` | Student assigned to **Robins** (Age: 10 or 11). |
+| **Class Allocation (Piwakawaka)** |`6`| **Grade:** `3` | Student assigned to **Piwakawaka**. |
+| **Class Allocation (Butterflies)** | `6`|**Grade:** `0`<br>**Year:** `2017` | Student assigned to **Butterflies** (Age: 7 or 8). |
+| **Class Allocation (Fireflies)** |`6`| **Grade:** `1` | Student assigned to **Fireflies**. |
+| **Class Allocation (Glowworms)** | `6`|**Grade:** `0`<br>**Year:** `2020` | Student assigned to **Glowworms**. (Age: 4 or 5)|
+| **Input Validation (Non-numeric)** |`6`| **Grade:** `abc` | Error message ("⚠️  Invalid grade. Please enter a number.") displayed, prompts user again. |
+| **Input Validation (Negative)** |`6`| **Grade:** `-1` | Error message ("⚠️  Cannot be negative. Please enter a valid number.") displayed, prompts user again. |
+| **Date Validation (Invalid Date)** |`6`| **Month:** `2`, **Day:** `30` | Error message ("⚠️  Invalid date. Please enter a valid date.") displayed, prompts user again. |
+| **Date Validation (Future Date)** | `6`|**Year:** `2099` | Error message ("⚠️  Invalid date: {input date} is in the future. Please try again.") displayed, prompts user again. |
+| **Date Validation (Text Input)** |`6`| **Year:** `two thousand` | Error message ("⚠️  Invalid date. Please enter a valid date.") displayed, prompts user again. |
+| **Email Validation (Missing @)** | `6`|**Email:** `dayoung.com` | Error message ("⚠️  Invalid email format. Please enter a valid email address.") displayed, prompts user again. |
+| **Email Validation (Missing .)** | `6`|**Email:** `dayoung@gmail` | Error message ("⚠️  Invalid email format. Please enter a valid email address.") displayed, prompts user again. |
+| **Find Student** |`4`| **Family Name:** `Charles` | Displays details for all students with family name 'Charles'. |
+| **Find Student - Case** | `4`|**Family Name:** `charles` | Displays details for all students with family name 'Charles'.(Case-insensitive)|
+| **Find Student - Not Found** | `4`|**Family Name:** `abc` | Error message ("⚠️  No students found with family name 'abc'.") displayed. |
+| **Remove Student - Success** | `5`|**ID:** `121`<br>**Confirm:** `y` | Student 121 removed from students list and class lists. |
+| **Remove Student - Cancel** | `5`|**ID:** `801`<br>**Confirm:** `n` | Removal cancelled, student 801 remains in the system. |
+| **Remove Student - Invalid ID** |`5`| **ID:** `abc` | Error message ("⚠️  Invalid ID. Please enter a number.") displayed. |
+| **Remove Student - Not Found** |`5`| **ID:** `111` | Error message ("⚠️  No student found with ID 111.") displayed. |
+
 
 
 ## 💭 Reflection
@@ -30,3 +50,5 @@ Initially, simple inputs like dates or grades were prone to errors if a user ent
 
 1.  **Date Validation (`get_valid_birthdate`):** This was the most complex part. I had to handle non-numeric text, invalid calendar dates (e.g., February 30th), and future dates. I implemented a recursive approach to ensure the user is prompted until a valid date is provided.
 2.  **Grade and Email Validation (`get_valid_grade`, `get_valid_email`):** I applied similar logic to other fields, ensuring grades are not negative and emails contain essential characters like '@' and '.'.
+
+Despite these challenges, I enjoyed implementing the new features for Menu 4 and 5. It was fun to manipulate the data in diverse ways to create these search and removal functions, and seeing them work successfully was very rewarding.
