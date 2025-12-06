@@ -203,6 +203,55 @@ def get_student_by_family_name():
     for student in matches:
         print_student_details(student, format_str)
 
+# Remove a student by ID and update class enrolments
+def remove_student():
+    try:
+        # Get student ID to remove
+        student_id = int(input("Enter the Student ID to remove: ").strip())
+    except ValueError:
+        print("⚠️  Invalid ID. Please enter a number.")
+        remove_student()
+
+    # initialize 'student_to_remove' variable to None
+    # Why not initialize to []? -> searching for a single student, not a list of students.
+    student_to_remove = None
+    # Find the student in the students list
+    for student in students:
+        if student[0] == student_id:
+            student_to_remove = student
+            # Exit loop once found
+            break
+
+    if not student_to_remove:
+        print(f"⚠️  No student found with ID {student_id}.")
+        return
+    
+    # Confirm removal
+    print("")
+    print("❓ Are you sure you want to remove the following student?")
+    print("")
+    format_str = "{: <5} {: <15} {: <15} {: <14} {: <6} {: <20}"
+    display_formatted_row(["ID","First Name","Family Name","Birth Date","Grade","e-Mail"], format_str)
+    print("-" * 85) 
+    print_student_details(student_to_remove, format_str)
+    print("")
+
+    # Get confirmation from user
+    confirm = input("Type 'y' to confirm removal: ").strip().lower()
+    if confirm != 'y':
+        print("⚠️  Removal cancelled.")
+        return
+
+    # Remove student from students list
+    students.remove(student_to_remove)
+
+    # Remove student from classes
+    for class_name, student_ids in classes.items():
+        if student_id in student_ids:
+            student_ids.remove(student_id)
+
+    print(f"Student with ID {student_id} has been removed.")
+
 def disp_menu():
     """
     Displays the menu and current date.  No parameters required.
@@ -212,7 +261,7 @@ def disp_menu():
     print(" 2 - List Students and their Classes")
     print(" 3 - List Students and their Ages")
     print(" 4 - Find Student")
-    print(" 5 - Not Implemented")
+    print(" 5 - Remove Student")
     print(" 6 - Add New Student")
     print(" X - eXit (stops the program)")
 
@@ -237,7 +286,7 @@ while response.upper() != "X":
     elif response == "4":
         get_student_by_family_name()
     elif response == "5":
-        pass
+        remove_student()
     elif response == "6":
         add_new_student()
     elif response.upper() != "X":
