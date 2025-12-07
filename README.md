@@ -17,26 +17,18 @@ The following table outlines the test data used to verify the class allocation l
 
 | Feature Tested | Menu | Input Data Entered | Expected Result |
 | :--- | :--- | :--- | :--- |
-| **Class Allocation (Bellbirds)** |`6`| **Grade:** `5`<br>**(Other fields valid)** | Student assigned to **Bellbirds**. |
-| **Class Allocation (Bellbirds)** |`6`| **Grade:** `0`<br>**Year:** `2012` | Student assigned to **Bellbirds**. (Age: 12 or 13) |
-| **Class Allocation (Senior Dance)** |`6`| **Grade:** `6` | Student assigned to **Senior Dance**. |
-| **Class Allocation (Robins)** |`6`| **Grade:** `0`<br>**Year:** `2014` | Student assigned to **Robins** (Age: 10 or 11). |
-| **Class Allocation (Piwakawaka)** |`6`| **Grade:** `3` | Student assigned to **Piwakawaka**. |
-| **Class Allocation (Butterflies)** | `6`|**Grade:** `0`<br>**Year:** `2017` | Student assigned to **Butterflies** (Age: 7 or 8). |
-| **Class Allocation (Fireflies)** |`6`| **Grade:** `1` | Student assigned to **Fireflies**. |
-| **Class Allocation (Glowworms)** | `6`|**Grade:** `0`<br>**Year:** `2020` | Student assigned to **Glowworms**. (Age: 4 or 5)|
+| **Class Allocation (Bellbirds)** |`6`| **Grade:** `5` | Student assigned to **Bellbirds**. Assigned by grade. |
+| **Class Allocation (Bellbirds)** |`6`| **Grade:** `0`<br>**Year:** `2012` | Student assigned to **Bellbirds**. Assigned by age(12 or 13) as grade is **0** |
 | **Input Validation (Non-numeric)** |`6`| **Grade:** `abc` | Error message ("⚠️  Invalid grade. Please enter a number.") displayed, prompts user again. |
 | **Input Validation (Negative)** |`6`| **Grade:** `-1` | Error message ("⚠️  Cannot be negative. Please enter a valid number.") displayed, prompts user again. |
 | **Date Validation (Invalid Date)** |`6`| **Month:** `2`, **Day:** `30` | Error message ("⚠️  Invalid date. Please enter a valid date.") displayed, prompts user again. |
 | **Date Validation (Future Date)** | `6`|**Year:** `2099` | Error message ("⚠️  Invalid date: {input date} is in the future. Please try again.") displayed, prompts user again. |
 | **Date Validation (Text Input)** |`6`| **Year:** `two thousand` | Error message ("⚠️  Invalid date. Please enter a valid date.") displayed, prompts user again. |
-| **Email Validation (Missing @)** | `6`|**Email:** `dayoung.com` | Error message ("⚠️  Invalid email format. Please enter a valid email address.") displayed, prompts user again. |
-| **Email Validation (Missing .)** | `6`|**Email:** `dayoung@gmail` | Error message ("⚠️  Invalid email format. Please enter a valid email address.") displayed, prompts user again. |
-| **Find Student** |`4`| **Family Name:** `Charles` | Displays details for all students with family name 'Charles'. |
-| **Find Student - Case** | `4`|**Family Name:** `charles` | Displays details for all students with family name 'Charles'.(Case-insensitive)|
+| **Email Validation (Missing @ or .)** | `6`|**Email:** `dayoung@lincolnuni` | Error message ("⚠️  Invalid email format. Please enter a valid email address.") displayed, prompts user again. |
+| **Find Student** |`4`| **Family Name:** `charles` | Displays details for all students with family name 'Charles'. Case is insensitive|
 | **Find Student - Not Found** | `4`|**Family Name:** `abc` | Error message ("⚠️  No students found with family name 'abc'.") displayed. |
 | **Remove Student - Success** | `5`|**ID:** `121`<br>**Confirm:** `y` | Student 121 removed from students list and class lists. |
-| **Remove Student - Cancel** | `5`|**ID:** `801`<br>**Confirm:** `n` | Removal cancelled, student 801 remains in the system. |
+| **Remove Student - Cancel** | `5`|**ID:** `801`<br>**Confirm:** `n`(any input except `y`) | Removal cancelled, student 801 remains in the system. |
 | **Remove Student - Invalid ID** |`5`| **ID:** `abc` | Error message ("⚠️  Invalid ID. Please enter a number.") displayed. |
 | **Remove Student - Not Found** |`5`| **ID:** `111` | Error message ("⚠️  No student found with ID 111.") displayed. |
 
