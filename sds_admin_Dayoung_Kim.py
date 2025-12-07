@@ -3,12 +3,13 @@
 # Student ID : 1171294
 # ================================================================
  
-from datetime import datetime,timedelta,date     # datetime module is required for working with dates
+from datetime import date     # datetime module is required for working with dates
 
 # Make the variables and function in sds_data.py available in this code (without needing 'sds_data.' prefix)
 from sds_data import students,classes,unique_id,display_formatted_row   
 
-def calculate_age(birth_date, current_date=None):
+
+def calculate_age(birth_date:date, current_date=None):
     if current_date is None:
         current_date = date.today()
     
@@ -20,7 +21,7 @@ def calculate_age(birth_date, current_date=None):
     
     return age
 
-def print_student_details(student, format_str):
+def print_student_details(student:list, format_str:str):
     id = student[0]
     fname = student[1]
     famname = student[2]
@@ -41,7 +42,7 @@ def list_all_students():
     for student in students:
         print_student_details(student, format_str)
 
-# Function to list students by class
+
 def list_students_and_classes():
     format_str = "{: <5} {: <15} {: <15} {: <14} {: <6} {: <20}"   
 
@@ -68,7 +69,8 @@ def list_students_and_classes():
                 if student[0] == student_id:
                     print_student_details(student, format_str)
 
-def add_student_to_classes(student_id, grade, birthdate):
+# Add student to class based on grade and age
+def add_student_to_classes(student_id:int, grade:int, birthdate:date):
     age = calculate_age(birthdate)
 
     if grade >= 6:
@@ -84,8 +86,10 @@ def add_student_to_classes(student_id, grade, birthdate):
     elif grade == 1:
         classes["Fireflies"].append(student_id)
     else:
-        # Grade 0, assign based on age
-        # Fix the problems identified by the School staff
+        """
+        If grade 0, assign based on age
+        Fix the problems identified by the School staff: age cut-offs for classes
+        """
         if age >= 12:
             classes["Bellbirds"].append(student_id)
         elif age >= 10:
@@ -100,7 +104,7 @@ def add_student_to_classes(student_id, grade, birthdate):
             classes["Glowworms"].append(student_id)
             
 # Helper function to validate a date
-def get_valid_birthdate(year, month, day):
+def get_valid_birthdate(year:str, month:str, day:str):
     try:
         year = int(year)
         month = int(month)
@@ -128,10 +132,10 @@ def get_valid_birthdate(year, month, day):
         )
 
 # Helper function to validate integer input
-def get_valid_grade(prompt):
+def get_valid_grade():
     while True:
         try:
-            value = int(input(prompt))
+            value = int(input("Enter Grade (0-6+): "))
             # Check for negative grades
             if value < 0:
                 print("⚠️  Cannot be negative. Please enter a valid number.")
@@ -142,14 +146,15 @@ def get_valid_grade(prompt):
             print("⚠️  Invalid grade. Please enter a number.")
 
 # Helper function to validate email input
-def get_valid_email(prompt):
+def get_valid_email():
     while True:
-        email = input(prompt)
+        email = input("Enter e-Mail Address: ")
         if "@" in email and "." in email:
             return email
         else:
             print("⚠️  Invalid email format. Please enter a valid email address.")
 
+# Add a new student and assign to class
 def add_new_student():
     fname = input("Enter First Name: ")
     famname = input("Enter Family Name: ")
@@ -157,8 +162,8 @@ def add_new_student():
     birthmonth = input("Enter Birth Month (1-12): ")
     birthday = input("Enter Birth Day (1-31): ")
     birthdate = get_valid_birthdate(birthyear, birthmonth, birthday)
-    email = get_valid_email("Enter e-Mail Address: ")
-    grade = get_valid_grade("Enter Grade (0-6+): ")
+    email = get_valid_email()
+    grade = get_valid_grade()
     new_id = unique_id()
 
     students.append([new_id, fname, famname, birthdate, grade, email])
@@ -183,9 +188,13 @@ def list_students_and_ages():
 
         display_formatted_row([id,fname,famname,age],format_str)   
 
-def get_student_by_family_name():
+# find student(s) and display details by family name
+def find_student_by_family_name():
     format_str = "{: <5} {: <15} {: <15} {: <14} {: <6} {: <20}"
-    # get family name to search for. Case insensitive search
+    """
+    Get family name to search for. 
+    Case insensitive search
+    """
     search_name = input("Enter Family Name to search: ").strip().lower()
     # Find all matching students. Put into a list.
     matches = [student for student in students if student[2].strip().lower() == search_name]
@@ -212,8 +221,11 @@ def remove_student():
             break
         except ValueError:
             print("⚠️  Invalid ID. Please enter a number.")
-    # initialize 'student_to_remove' variable to None
-    # Why not initialize to []? -> searching for a single student, not a list of students.
+
+    """
+    initialise 'student_to_remove' variable to None
+    Why not initialise to []? -> searching for a single student, not a list of students.
+    """
     student_to_remove = None
     # Find the student in the students list
     for student in students:
@@ -284,7 +296,7 @@ while response.upper() != "X":
     elif response == "3":
         list_students_and_ages()
     elif response == "4":
-        get_student_by_family_name()
+        find_student_by_family_name()
     elif response == "5":
         remove_student()
     elif response == "6":
