@@ -2,17 +2,8 @@
 **Student Name:** Dayoung Kim  
 **Student ID:** 1171294
 
-## ✨ New Features Implemented
-* **New Classes:** Logic updated to support 'Bellbirds' (Grade 5 or Age 12+) and 'Senior Dance' (Grade 6+ only).
-* **New Reports:** 
-    * `List Students and their Classes`: Displays students grouped by class, sorted by family name.
-    * `List Students and their Ages`: Displays the age of each student.
-* **Menu 4 (Find Student):** Allows case-insensitive search for students by their family name.
-* **Menu 5 (Remove Student):** Allows removal of a student by ID, requiring confirmation and updating class lists.
-* **Data Validation:** Implemented for grades, dates, and email formats to prevent program crashes and ensure user-friendliness.
 
-
-## 🧪 Test Data Strategy
+## Test Data Strategy
 The following table outlines the test data used to verify the class allocation logic and the new features/validation checks.
 
 | Feature Tested | Menu | Input Data Entered | Expected Result |
@@ -27,20 +18,12 @@ The following table outlines the test data used to verify the class allocation l
 | **Email Validation (Missing @ or .)** | `6`|**Email:** `dayoung@lincolnuni` | Error message ("⚠️  Invalid email format. Please enter a valid email address.") displayed, prompts user again. |
 | **Find Student** |`4`| **Family Name:** `charles` | Displays details for all students with family name 'Charles'. Case is insensitive|
 | **Find Student - Not Found** | `4`|**Family Name:** `abc` | Error message ("⚠️  No students found with family name 'abc'.") displayed. |
-| **Remove Student - Success** | `5`|**ID:** `121`<br>**Confirm:** `y` | Student 121 removed from students list and class lists. |
-| **Remove Student - Cancel** | `5`|**ID:** `801`<br>**Confirm:** `n`(any input except `y`) | Removal cancelled, student 801 remains in the system. |
-| **Remove Student - Invalid ID** |`5`| **ID:** `abc` | Error message ("⚠️  Invalid ID. Please enter a number.") displayed. |
-| **Remove Student - Not Found** |`5`| **ID:** `111` | Error message ("⚠️  No student found with ID 111.") displayed. |
 
 
 
-## 💭 Reflection
 
-The most significant challenge in this assessment was implementing a robust **Data Validation System** to ensure the program never crashes due to user error.
+## Reflection
 
-Initially, simple inputs like dates or grades were prone to errors if a user entered text or invalid numbers. To solve this, I focused on creating specialised helper functions for each data type:
+The most challenging aspect of this assessment was planning the logic required for the Data Validation System. It was difficult because it required handling multiple conditional layers. It was particularly confusing to combine try-except blocks with while loops to ensure the programme would not crash and would keep asking for input until the user provided a valid answer.
 
-1.  **Date Validation (`get_valid_birthdate`):** This was the most complex part. I had to handle non-numeric text, invalid calendar dates (e.g., February 30th), and future dates. I implemented a recursive approach to ensure the user is prompted until a valid date is provided.
-2.  **Grade and Email Validation (`get_valid_grade`, `get_valid_email`):** I applied similar logic to other fields, ensuring grades are not negative and emails contain essential characters like '@' and '.'.
-
-Despite these challenges, I enjoyed implementing the new features for Menu 4 and 5. It was fun to manipulate the data in diverse ways to create these search and removal functions, and seeing them work successfully was very rewarding.
+Trying to account for every possible invalid input was tricky. I found it quite overwhelming to predict the unpredictable ways a user might break the programme. Consequently, I spent a lot of time debugging and testing various scenarios to ensure the final result ran smoothly.
