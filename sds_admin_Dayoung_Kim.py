@@ -33,7 +33,7 @@ def print_student_details(student:list, format_str:str):
 
 def list_all_students():
     format_str = "{: <5} {: <15} {: <15} {: <14} {: <6} {: <20}"   
-    print("❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ All Student ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖".center(90))
+    print("- All Student -".center(90))
     print("")
 
     display_formatted_row(["ID","First Name","Family Name","Birth Date","Grade","e-Mail"],format_str)      
@@ -46,14 +46,14 @@ def list_all_students():
 def list_students_and_classes():
     format_str = "{: <5} {: <15} {: <15} {: <14} {: <6} {: <20}"   
 
-    print("❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ Students by Classes ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖".center(84))
+    print("- Students by Classes -".center(84))
         
     # Sort by family name
     sorted_students = sorted(students, key=lambda x: x[2])
     
     for class_name in classes:
         print("")
-        print(f"◉ Class: {class_name} ▶︎ {len(classes[class_name])} student(s)")
+        print(f"{class_name}: {len(classes[class_name])} student(s)")
 
         # Handle case where no students are enrolled
         if len(classes[class_name]) == 0:
@@ -154,10 +154,19 @@ def get_valid_email():
         else:
             print("⚠️  Invalid email format. Please enter a valid email address.")
 
+# Helper function to validate name input
+def get_valid_name(prompt:str):
+    while True:
+        name = input(prompt).strip()
+        if name:
+            return name
+        else:
+            print("⚠️  Name cannot be empty. Please enter a name.")
+
 # Add a new student and assign to class
 def add_new_student():
-    fname = input("Enter First Name: ")
-    famname = input("Enter Family Name: ")
+    fname = get_valid_name("Enter First Name: ")
+    famname = get_valid_name("Enter Family Name: ")
     birthyear = input("Enter Birth Year (YYYY): ")
     birthmonth = input("Enter Birth Month (1-12): ")
     birthday = input("Enter Birth Day (1-31): ")
@@ -174,7 +183,7 @@ def list_students_and_ages():
     format_str = "{: <5} {: <15} {: <15} {: <14}"   
 
     # A new report “Dancers Ages” added
-    print("❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ Dancers Ages ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖".center(44))
+    print("- Dancers Ages -".center(44))
     print("")
     display_formatted_row(["ID","First Name","Family Name", "Age"],format_str)      
     print("-" * 44)    
@@ -204,7 +213,7 @@ def find_student_by_family_name():
         return
 
     print("")
-    print(f"❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ Students with Family Name: {search_name} ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖".center(74))
+    print(f"- Students with Family Name: {search_name} -".center(74))
     print("")
     display_formatted_row(["ID","First Name","Family Name","Birth Date","Grade","e-Mail"], format_str)
     print("-" * 85)
